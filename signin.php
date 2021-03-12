@@ -24,44 +24,29 @@ if (!isset($_SESSION)) {
     <div class="h-100">
         <div class="container-xl p-0 signin-full-container flex-shrink-0">
             <div class="container login-container">
-                <div class="row ">
-                    <div class="col-md-6 login-form-1">
-                        <h3>Login</h3>
-                        <form method="POST" action="login.php" onSubmit="return Empty()">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Your Email *" value="" name="email" id="loginEmail" />
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="password" id="loginPassword" class="form-control" placeholder="Your Password *" value="" />
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="btnSubmit" value="Login" />
-                            </div>
-                            <div class="form-group">
-                                <a href="#" class="ForgetPwd">Forget Password?</a>
-                            </div>
-                        </form>
+                <div class="login-form-2 text-center">
+                    <h3>Login</h3>
+                    <form method="POST" action="accCreate.php" onSubmit="return ValidityChecker()">
+                        <div class="form-group">
+                            <input type="text" name="email" id="accEmail" class="form-control" placeholder="Your Email *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" id="accPassword" placeholder="Your Password *" value="" />
+                        </div>
+                        <div class="form-group ">
+                            <input type="submit" class="btnSubmit" value="Login" />
+                        </div>
+                        <div class="form-group">
+                            <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
+                        </div>
+                    </form>
+                    <div class="form-group ">
+                        <h3 class="new-here-text">New Here?</h3>
                     </div>
-                    <div class="col-md-6 login-form-2">
-                        <h3>Create Account</h3>
-                        <form method="POST" action="accCreate.php" onSubmit="return ValidityChecker()">
-                            <div class="form-group">
-                                <input type="text" name="email" id="accEmail" class="form-control" placeholder="Your Email *" value="" />
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" name="password" id="accPassword" placeholder="Your Password *" value="" />
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="btnSubmit" value="Sign-Up" />
-                            </div>
-                            <div class="form-group">
-
-                                <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
-                            </div>
-                        </form>
+                    <div class="form-group ">
+                        <input type="button" class="btnSubmit" value="Create Your Account Now" />
                     </div>
                 </div>
-
             </div>
         </div>
 

@@ -1,5 +1,6 @@
 .login-container {
     padding-bottom: 200px;
+    max-width: 700px;
 }
 
 .login-form-1{
@@ -14,13 +15,14 @@
     padding: 5%;
     background: #2B7A78;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    max-width: 700px;
 }
 .login-form-2 h3{
     text-align: center;
     color: #fff;
 }
 .login-container form{
-    padding: 10%;
+    padding: 5%;
 }
 .btnSubmit
 {
@@ -60,4 +62,8 @@ form .form-group {
     width: 100%;
     display: flex;
     align-items: center;
+}
+
+.new-here-text {
+    padding-bottom: 10px;
 }
