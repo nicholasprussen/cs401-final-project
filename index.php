@@ -1,8 +1,12 @@
 <html>
 
 <?php
-if (!isset($_SESSION)) {
-    session_start();
+session_start();
+
+if (isset($_SESSION['authenticated'])) {
+
+    header('Location: home.php');
+    exit;
 }
 ?>
 
@@ -41,12 +45,14 @@ if (!isset($_SESSION)) {
                 </div>
             </div>
         </div>
+        <!--
         <div class="index-main-content-2">
 
         </div>
         <div class="index-main-content-3">
 
         </div>
+        !-->
     </div>
 
     <?php

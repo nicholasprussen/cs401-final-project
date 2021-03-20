@@ -1,9 +1,7 @@
 <html>
 
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
+  include 'components/checkauthenticated.php';
 ?>
 
 <head>

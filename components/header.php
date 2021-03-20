@@ -12,21 +12,29 @@
 
             <div>
                 <?php
-                    $isSignedIn = false;
-
-                    if ($isSignedIn) {
-                        echo    '<a class="navbar-brand d-flex justify-content-around align-items-center" href="#">
-                                    <p class="m-0 extra-padding-right">Nicholas Prussen</p>
-                                    <img src="img/circle-transparent.png" alt="" width="40" height="40">
-                                </a>';
-                    } else {
-                        echo    '<a id="sign-in-button" class="navbar-brand d-flex justify-content-around align-items-center" href="signin.php">
+                if (isset($_SESSION['authenticated'])) {
+                    echo '<a id="sign-in-button" class="navbar-brand d-flex justify-content-around align-items-center" href="signout.php">
+                                <button type="button" class="btn text-white secondary-color-background">Sign-Out</button>
+                            </a>';
+                } else {
+                    echo    '<a id="sign-in-button" class="navbar-brand d-flex justify-content-around align-items-center" href="signin.php">
                                     <button type="button" class="btn text-white secondary-color-background">Sign-In</button>
                                 </a>';
-                    }
+                }
+
+                // if ($isSignedIn) {
+                //     echo    '<a class="navbar-brand d-flex justify-content-around align-items-center" href="#">
+                //                     <p class="m-0 extra-padding-right">Nicholas Prussen</p>
+                //                     <img src="img/circle-transparent.png" alt="" width="40" height="40">
+                //                 </a>';
+                // } else {
+                //     echo    '<a id="sign-in-button" class="navbar-brand d-flex justify-content-around align-items-center" href="signin.php">
+                //                     <button type="button" class="btn text-white secondary-color-background">Sign-In</button>
+                //                 </a>';
+                // }
                 ?>
-                
-                
+
+
             </div>
         </div>
     </nav>

@@ -1,9 +1,7 @@
 <html>
 
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
+  include 'components/checkauthenticated.php';
 ?>
 
 <head>
@@ -35,8 +33,8 @@ if (!isset($_SESSION)) {
                 include "components/sidenavbartoggler.php";
             ?>
 
-            <div class="container-fluid">
-                Hello
+            <div class="container-fluid friends-content">
+                <h1>You don't get to have any friends</h1>
             </div>
         </div>
         <!-- /#page-content-wrapper -->

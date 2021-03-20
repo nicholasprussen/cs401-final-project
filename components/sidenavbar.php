@@ -4,7 +4,16 @@
     <div class="sidebar-heading">
         <a class="d-flex justify-content-around align-items-center profile-link" href="#">
             <img src="img/circle-transparent.png" alt="" width="40" height="40">
-            <p class="m-0 profile-link">Nicholas Prussen</p>
+            <p class="m-0 profile-link">
+                <?php
+                    require_once 'Dao.php';
+                    $dao = new Dao();
+
+                    $userInfo = $dao->getUserInfo($_SESSION['userIdentification']);
+
+                    echo $userInfo['firstname'] . ' ' . $userInfo['lastname'];
+                ?>
+            </p>
         </a>
     </div>
     <div class="list-group list-group-flush">

@@ -1,10 +1,15 @@
 <html>
 
 <?php
-if (!isset($_SESSION)) {
-    session_start();
+session_start();
+
+if (isset($_SESSION['authenticated'])) {
+
+    header('Location: home.php');
+    exit;
 }
 ?>
+
 
 <head>
     <?php
@@ -21,42 +26,44 @@ if (!isset($_SESSION)) {
     include "components/header.php";
     ?>
 
-    <div class="h-100">
-        <div class="container-xl p-0 signin-full-container flex-shrink-0">
-            <div class="container login-container">
-                <div class="login-form-2 text-center">
-                    <h3>Login</h3>
-                    <form method="POST" action="accCreate.php" onSubmit="return ValidityChecker()">
-                        <div class="form-group">
-                            <input type="text" name="email" id="accEmail" class="form-control" placeholder="Your Email *" value="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password" id="accPassword" placeholder="Your Password *" value="" />
-                        </div>
-                        <div class="form-group ">
-                            <input type="submit" class="btnSubmit" value="Login" />
-                        </div>
-                        <div class="form-group">
-                            <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
-                        </div>
-                    </form>
-                    <div class="form-group ">
-                        <h3 class="new-here-text">New Here?</h3>
+    <div class="form-wrapper">
+        <div class="container form-container d-flex justify-content-center">
+            <div class="container login-form-2 text-center">
+                <h3>Login</h3>
+                <form method="POST" action="handlers/signin_handler.php">
+                    <div class="form-group">
+                        <input type="text" name="email" id="accEmail" class="form-control" placeholder="Your Email *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" id="accPassword" placeholder="Your Password *" value="" />
                     </div>
                     <div class="form-group ">
+                        <input type="submit" class="btnSubmit" value="Login" />
+                    </div>
+                    <div class="form-group">
+                        <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
+                    </div>
+                </form>
+                <div class="form-group ">
+                    <h3 class="new-here-text">New Here?</h3>
+                </div>
+                <div class="form-group ">
+                    <a href="signup.php">
                         <input type="button" class="btnSubmit" value="Create Your Account Now" />
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
+    </div>
 
-        <?php
-        include "components/footer.php";
-        ?>
 
-        <script>
-            document.getElementById("sign-in-button").remove();
-        </script>
+    <?php
+    include "components/footer.php";
+    ?>
+
+    <script>
+        document.getElementById("sign-in-button").remove();
+    </script>
 
 </body>
 

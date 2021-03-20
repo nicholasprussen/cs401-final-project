@@ -1,9 +1,7 @@
 <html>
 
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
+  include 'components/checkauthenticated.php';
 ?>
 
 <head>
@@ -36,7 +34,14 @@ if (!isset($_SESSION)) {
             ?>
 
             <div class="container-fluid">
-                Hello
+                <?php
+                    require_once 'Dao.php';
+                    $dao = new Dao();
+
+                    $userInfo = $dao->getUserInfo($_SESSION['userIdentification']);
+
+                    echo print_r($userInfo, 1);
+                ?>
             </div>
         </div>
         <!-- /#page-content-wrapper -->

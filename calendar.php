@@ -1,9 +1,7 @@
 <html>
 
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
+  include 'components/checkauthenticated.php';
 ?>
 
 <head>
@@ -35,8 +33,14 @@ if (!isset($_SESSION)) {
                 include "components/sidenavbartoggler.php";
             ?>
 
-            <div class="container-fluid">
-                Hello
+            <div class="container-fluid p-0 calendar-wrapper">
+                <?php
+
+                    for($x = 0; $x < 30;$x++){
+                        echo "<div class='calendar-day'><h3>" . date('l, F jS', strtotime('+' . $x . ' days')) . "</h3><div class='calendar-day-content'><p>No Events To Show</p></div></div>";
+                    }
+
+                ?>
             </div>
         </div>
         <!-- /#page-content-wrapper -->

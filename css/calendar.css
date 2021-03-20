@@ -1,0 +1,17 @@
+.calendar-wrapper {
+    height: calc(100vh - 190px);
+    overflow: auto;
+}
+
+.calendar-day {
+    height: 150px;
+    background-color: white;
+}
+
+.calendar-day h3 {
+    padding: 10px;
+}
+
+.calendar-day-content {
+    padding-left: 10px;
+}
