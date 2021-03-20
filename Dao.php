@@ -4,9 +4,11 @@ require_once 'KLogger.php';
 
 class Dao {
 
-    public $host = 'localhost';
-    public $user = 'root';
-    public $password = '';
+    private $host = "us-cdbr-east-03.cleardb.com";
+    private $db = "heroku_31de4dc6b0b0f21";
+    private $user = "b9fdc62d5daa4c";
+    private $password = "de2d254a";
+
     protected $logger;
 
     public function __construct() {
@@ -15,7 +17,7 @@ class Dao {
     
     private function getConnection() {
         try {
-            $connection = new PDO('mysql:host='.$this->host.';dbname=mygiftlists', $this->user, $this->password);
+            $connection = new PDO("mysql:host={$this->host};dbname={$this->db}", $this->user, $this->password);
             $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $this->logger->LogDebug("Got a connection");
         } catch (PDOException $e) {
