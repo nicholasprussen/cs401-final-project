@@ -3,10 +3,16 @@
 <?php
 session_start();
 
-if (isset($_SESSION['authenticated'])) {
+if (isset($_SESSION['errors'])) {
+    $errors = $_SESSION['errors'];
+    unset($_SESSION['errors']);
+}
 
-    header('Location: home.php');
-    exit;
+if (isset($_SESSION['authenticated'])) {
+    if($_SESSION['authenticated']) {
+      header('Location: home.php');
+        exit;  
+    } 
 }
 ?>
 
@@ -32,22 +38,41 @@ if (isset($_SESSION['authenticated'])) {
                 <h3>Login</h3>
                 <form method="POST" action="handlers/signin_handler.php">
                     <div class="form-group">
-                        <input type="text" name="email" id="accEmail" class="form-control" placeholder="Your Email *" value="" />
+                        <input type="text" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['email'] ?>" name="email" id="accEmail" class="form-control" placeholder="Your Email *" value="" />
                     </div>
+                    <?php
+                    if (isset($errors)) {
+                        if (isset($errors['email'])) {
+                            echo '<label for="accEmail" class="form-label text-warning"> ' . $errors['email'] . '</label>';
+                        }
+                    }
+                    ?>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="password" id="accPassword" placeholder="Your Password *" value="" />
+                        <input type="password" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['password'] ?>" class="form-control" name="password" id="accPassword" placeholder="Your Password *" value="" />
                     </div>
-                    <div class="form-group ">
+                    <?php
+                    if (isset($errors)) {
+                        if (isset($errors['password'])) {
+                            echo '<label for="accPassword" class="form-label text-warning"> ' . $errors['password'] . '</label>';
+                        }
+                    }
+                    if (isset($errors)) {
+                        if (isset($errors['loginFailed'])) {
+                            echo '<label for="" class="form-label text-warning"> ' . $errors['loginFailed'] . '</label>';
+                        }
+                    }
+                    ?>
+                    <div class="form-group text-center">
                         <input type="submit" class="btnSubmit" value="Login" />
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group text-center">
                         <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
-                    </div>
+                    </div>-->
                 </form>
-                <div class="form-group ">
+                <div class="form-group">
                     <h3 class="new-here-text">New Here?</h3>
                 </div>
-                <div class="form-group ">
+                <div class="form-group text-center">
                     <a href="signup.php">
                         <input type="button" class="btnSubmit" value="Create Your Account Now" />
                     </a>
@@ -64,6 +89,12 @@ if (isset($_SESSION['authenticated'])) {
     <script>
         document.getElementById("sign-in-button").remove();
     </script>
+
+    <?php
+    if (isset($_SESSION['form'])) {
+        unset($_SESSION['form']);
+    }
+    ?>
 
 </body>
 

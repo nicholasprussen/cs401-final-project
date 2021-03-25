@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once 'KLogger.php';
+require_once '../KLogger.php';
 
 $logger = new KLogger( "createlist.txt", KLogger::DEBUG);
 
@@ -19,7 +19,7 @@ if(isset($_POST['itemlink'])){
 $price = $_POST['itemprice'];
 
 
-require_once 'Dao.php';
+require_once '../Dao.php';
 $dao = new Dao();
 
 $dao->createListItem($userid, $listname, $name, $link, $price);
@@ -28,10 +28,10 @@ $dao->createListItem($userid, $listname, $name, $link, $price);
 
 
 if ($_SESSION['authenticated']) {
-    header('Location: mylists.php');
+    header('Location: ../mylists.php');
     exit;
 } else {
-    header('Location: signin.php');
+    header('Location: ../signin.php');
     exit;
 }
 

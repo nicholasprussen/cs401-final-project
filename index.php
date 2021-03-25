@@ -4,9 +4,10 @@
 session_start();
 
 if (isset($_SESSION['authenticated'])) {
-
-    header('Location: home.php');
-    exit;
+    if($_SESSION['authenticated']){
+      header('Location: home.php');
+        exit;  
+    }
 }
 ?>
 

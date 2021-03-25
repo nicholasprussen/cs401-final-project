@@ -22,7 +22,7 @@ $session_listname = (isset($_SESSION['currentListName'])) ? $_SESSION['currentLi
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="createlist_handler.php">
+                <form method="POST" action="handlers/createlist_handler.php">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Create New List</h5>
                         <button type="button" class="btn-close Close" data-dismiss="modal" aria-label="Close"></button>
@@ -51,7 +51,7 @@ $session_listname = (isset($_SESSION['currentListName'])) ? $_SESSION['currentLi
     <div class="modal fade" id="itemModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="createlistitem_handler.php">
+                <form method="POST" action="handlers/createlistitem_handler.php">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Create List Item</h5>
                         <button type="button" class="btn-close Close" data-dismiss="modal" aria-label="Close"></button>

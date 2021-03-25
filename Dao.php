@@ -4,10 +4,14 @@ require_once 'KLogger.php';
 
 class Dao {
 
-    private $host = "us-cdbr-east-03.cleardb.com";
-    private $db = "heroku_31de4dc6b0b0f21";
-    private $user = "b9fdc62d5daa4c";
-    private $password = "de2d254a";
+    //private $host = "us-cdbr-east-03.cleardb.com";
+    //private $db = "heroku_31de4dc6b0b0f21";
+    //private $user = "b9fdc62d5daa4c";
+    //private $password = "de2d254a";
+    private $host = "localhost";
+    private $db = "mygiftlists";
+    private $user = "root";
+    private $password = "";
 
     protected $logger;
 
@@ -117,15 +121,22 @@ class Dao {
         }
     }
 
-    public function createUser($firstname, $lastname, $email, $password) {
-        $this->logger->LogDebug("inserting user with ".$firstname." ".$lastname." ".$email." ".$password." ");
+    public function createUser($firstname, $lastname, $email, $password, $address) {
+        $this->logger->LogDebug("inserting user with ".$firstname." ".$lastname." ".$email." ".$password." ".$address);
         $connection = $this->getConnection();
-        $createUserQuery = "INSERT INTO userdata (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)";
+        if($address == ""){
+            $createUserQuery = "INSERT INTO userdata (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)";
+        } else {
+            $createUserQuery = "INSERT INTO userdata (firstname, lastname, email, password, address) VALUES (:firstname, :lastname, :email, :password, :address)";
+        }
         $q = $connection->prepare($createUserQuery);
         $q->bindParam(":firstname", $firstname);
         $q->bindParam(":lastname", $lastname);
         $q->bindParam(":email", $email);
         $q->bindParam(":password", $password);
+        if($address != "") {
+            $q->bindParam(":address", $address);
+        }
         $q->execute();
     }
 

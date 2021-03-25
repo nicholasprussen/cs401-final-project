@@ -1,6 +1,6 @@
 <?php
 
-//session_start();
+session_start();
 
 require_once '../KLogger.php';
 
@@ -24,14 +24,12 @@ if ($public == 'on') {
 require_once '../Dao.php';
 $dao = new Dao();
 
-$dao->createUserList($userid, $listname, $isPublic);
 
-// if(!($dao->userListExists($userid, $listname))) {
-//     $logger->LogDebug("Made past userListExists check");
-//     $logger->LogDebug($userid);
-//     $logger->LogDebug($listname);
-//     $dao->createUserList($userid, $listname, $isPublic);
-// }
+//$dao->createUserList($userid, $listname, $isPublic);
+
+if(!($dao->userListExists($userid, $listname))) {
+    $dao->createUserList($userid, $listname, $isPublic);
+}
 
 
 
