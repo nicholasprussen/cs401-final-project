@@ -10,6 +10,7 @@
     ?>
     <link rel="stylesheet" href="css/friends.css">
     <link rel="stylesheet" href="css/sidebarnav.css">
+    <script src="js/sidebar-style.js"></script>
     <title>Friends</title>
 </head>
 
@@ -43,17 +44,14 @@
     <!-- /#wrapper -->
 
     <!-- Menu Toggle Script -->
+    <?php
+    include "components/menu_toggle.php";
+    ?>
+
     <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
+        $(function() {
+            changeStyle("#sidebar-friends");
         });
-
-        currentPage = "sidebar-friends";
-
-        document.getElementById(currentPage).classList.remove("secondary-color-background");
-
-        document.getElementById(currentPage).style.backgroundColor = "#3AAFA9";
     </script>
 
     <?php

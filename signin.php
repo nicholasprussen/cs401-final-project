@@ -1,19 +1,24 @@
 <html>
 
 <?php
+//start session
 session_start();
 
-if (isset($_SESSION['errors'])) {
-    $errors = $_SESSION['errors'];
-    unset($_SESSION['errors']);
-}
-
+//redirect if authenticated
 if (isset($_SESSION['authenticated'])) {
     if($_SESSION['authenticated']) {
       header('Location: home.php');
         exit;  
     } 
 }
+
+//grab errors object
+if (isset($_SESSION['errors'])) {
+    $errors = $_SESSION['errors'];
+    unset($_SESSION['errors']);
+}
+
+
 ?>
 
 
@@ -86,11 +91,8 @@ if (isset($_SESSION['authenticated'])) {
     include "components/footer.php";
     ?>
 
-    <script>
-        document.getElementById("sign-in-button").remove();
-    </script>
-
     <?php
+    //unset saved post vars
     if (isset($_SESSION['form'])) {
         unset($_SESSION['form']);
     }

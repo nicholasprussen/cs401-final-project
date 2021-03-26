@@ -10,6 +10,7 @@
     ?>
     <link rel="stylesheet" href="css/myprofile.css">
     <link rel="stylesheet" href="css/sidebarnav.css">
+    <script src="js/sidebar-style.js"></script>
     <title>My Profile</title>
 </head>
 
@@ -50,17 +51,14 @@
     <!-- /#wrapper -->
 
     <!-- Menu Toggle Script -->
+    <?php
+    include "components/menu_toggle.php";
+    ?>
+
     <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
+        $(function() {
+            changeStyle("#sidebar-myprofile");
         });
-
-        currentPage = "sidebar-myprofile";
-
-        document.getElementById(currentPage).classList.remove("secondary-color-background");
-
-        document.getElementById(currentPage).style.backgroundColor = "#3AAFA9";
     </script>
 
     <?php

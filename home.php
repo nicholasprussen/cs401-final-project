@@ -1,7 +1,7 @@
 <html>
 
 <?php
-  include 'components/checkauthenticated.php';
+include 'components/checkauthenticated.php';
 ?>
 
 <head>
@@ -10,6 +10,7 @@
     ?>
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/sidebarnav.css">
+    <script src="js/sidebar-style.js"></script>
     <title>Home</title>
 </head>
 
@@ -23,19 +24,19 @@
     <div class="d-flex container p-0" id="wrapper">
 
         <?php
-            include "components/sidenavbar.php";
+        include "components/sidenavbar.php";
         ?>
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
             <?php
-                include "components/sidenavbartoggler.php";
+            include "components/sidenavbartoggler.php";
             ?>
 
             <div class="container-fluid home-content-wrapper">
                 <?php
-                    echo $_SESSION['userIdentification'];
+                echo $_SESSION['userIdentification'];
                 ?>
             </div>
         </div>
@@ -45,17 +46,14 @@
     <!-- /#wrapper -->
 
     <!-- Menu Toggle Script -->
+    <?php
+    include "components/menu_toggle.php";
+    ?>
+
     <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
+        $(function() {
+            changeStyle("#sidebar-home");
         });
-
-        currentPage = "sidebar-home";
-
-        document.getElementById(currentPage).classList.remove("secondary-color-background");
-
-        document.getElementById(currentPage).style.backgroundColor = "#3AAFA9";
     </script>
 
     <?php

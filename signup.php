@@ -1,18 +1,22 @@
 <html>
 
 <?php
+
+//start session
 session_start();
 
+//redirect if authenticated
+if (isset($_SESSION['authenticated'])) {
+    if ($_SESSION['authenticated']) {
+        header('Location: home.php');
+        exit;
+    }
+}
+
+//grab errors object
 if (isset($_SESSION['errors'])) {
     $errors = $_SESSION['errors'];
     unset($_SESSION['errors']);
-}
-
-if (isset($_SESSION['authenticated'])) {
-    if($_SESSION['authenticated']){
-      header('Location: home.php');
-        exit;  
-    }
 }
 
 ?>
@@ -104,7 +108,7 @@ if (isset($_SESSION['authenticated'])) {
                     <div class="form-group row g-3 text-left">
 
                         <div class="col-12">
-                            
+
                             <label for="address1" class="form-label">Address 1</label>
                             <input type="text" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['address1'] ?>" class="form-control" id="address1" name="address1" placeholder="420 Tortuga Ln">
                             <?php
@@ -188,37 +192,42 @@ if (isset($_SESSION['authenticated'])) {
     ?>
 
     <script>
-        document.getElementById("sign-in-button").remove();
+        $(function() {
+            var zipElem = $("#zip");
+            zipElem.keyup(function() {
+                if (zipElem.val().length !== 0) {
+                    //create request
+                    var request = new XMLHttpRequest();
 
-        let zip = document.getElementById('zip');
+                    //execute request
+                    request.open('GET', 'http://ZiptasticAPI.com/' + zip.value);
 
-        zip.addEventListener('keyup', function(e) {
-            if (zip.value.length !== 0) {
-                var request = new XMLHttpRequest();
+                    //grab results from ziptastic
+                    request.onload = function() {
+                        var jsonObj = JSON.parse(this.response);
 
-                request.open('GET', 'http://ZiptasticAPI.com/' + zip.value);
+                        let city = "";
+                        let state = "";
 
-                request.onload = function() {
-                    var jsonObj = JSON.parse(this.response);
+                        //only fill if no error
+                        if (!('error' in jsonObj)) {
+                            city = jsonObj['city'];
+                            state = jsonObj['state'];
 
-                    let city = "";
-                    let state = "";
-
-                    if (!('error' in jsonObj)) {
-                        city = jsonObj['city'];
-                        state = jsonObj['state'];
-
-                        document.getElementById('city').value = city;
-                        document.getElementById('state').value = state;
+                            $("#city").val(city);
+                            $("#state").val(state);
+                        }
                     }
-                }
 
-                request.send();
-            }
+                    //send request
+                    request.send();
+                }
+            });
         });
     </script>
 
     <?php
+    //remove old post vars on refresh
     if (isset($_SESSION['form'])) {
         unset($_SESSION['form']);
     }

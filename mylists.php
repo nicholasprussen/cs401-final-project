@@ -3,6 +3,7 @@
 <?php
 include 'components/checkauthenticated.php';
 
+//grab current listname to pass to javascript
 $session_listname = (isset($_SESSION['currentListName'])) ? $_SESSION['currentListName'] : '';
 ?>
 
@@ -12,6 +13,8 @@ $session_listname = (isset($_SESSION['currentListName'])) ? $_SESSION['currentLi
     ?>
     <link rel="stylesheet" href="css/mylists.css">
     <link rel="stylesheet" href="css/sidebarnav.css">
+    <script src="js/sidebar-style.js"></script>
+    <script src="js/get-list-data.js"></script>
     <title>My Lists</title>
 </head>
 
@@ -108,24 +111,20 @@ $session_listname = (isset($_SESSION['currentListName'])) ? $_SESSION['currentLi
                             </button>
                         </li>
                         <?php
+                        //get Dao obj
                         require_once 'Dao.php';
                         $dao = new Dao();
 
+                        //grab user lists from database
                         $sqlList = $dao->getUserLists($_SESSION['userIdentification']);
 
+                        //iterate through lists and create html for each one
                         $intCounter = 0;
                         foreach ($sqlList as $key => $value) {
-                            echo '<li><button class="w-100 h-100 list-button" id="button-' . $intCounter . '" onClick="getInformation(' . $intCounter . ')">' . $value . '</button></li>';
+                            echo '<li><button class="w-100 h-100 list-button" id="button-' . $intCounter . '" onClick="getListData(' . $intCounter . ')">' . $value . '</button></li>';
                             $intCounter++;
                         }
-
-                        // for($x = $intCounter + 1; $x < 50; $x++) {
-                        //     echo '<li><button class="w-100 h-100 list-button" id="button-' . $x . '" onClick="getInformation('. $x . ')">List #' . $x . '</button></li>';
-                        // }
                         ?>
-
-
-
                     </ul>
                 </div>
                 <div id="current-list-container" class="current-list-container">
@@ -141,54 +140,30 @@ $session_listname = (isset($_SESSION['currentListName'])) ? $_SESSION['currentLi
     <!-- /#wrapper -->
 
     <!-- Menu Toggle Script -->
+    <?php
+    include "components/menu_toggle.php";
+    ?>
+
     <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
+        $(function() {
 
-        currentButton = null;
+            changeStyle("#sidebar-mylists");
 
-        currentPage = "sidebar-mylists";
+            currentButton = null;
 
-        document.getElementById(currentPage).classList.remove("secondary-color-background");
+            var currListName = '<?php echo $session_listname ?>';
 
-        document.getElementById(currentPage).style.backgroundColor = "#3AAFA9";
+            listOfButtons = document.getElementsByTagName("BUTTON");
 
-
-        function getInformation(x) {
-            if (currentButton) {
-                currentButton.style.backgroundColor = "";
-                currentButton.style.color = "";
-            }
-            button = document.getElementById("button-" + x);
-            button.style.backgroundColor = "#17252A";
-            button.style.color = "white";
-
-            $.ajax({
-                type: "POST",
-                url: "getListData.php",
-                data: {
-                    'listname': button.innerHTML
+            for (x = 0; x < listOfButtons.length; x++) {
+                if (listOfButtons[x].innerHTML === currListName) {
+                    listOfButtons[x].click();
+                    break;
                 }
-            }).done(function(msg) {
-                //console.log(msg);
-                document.getElementById("current-list-list").innerHTML = msg;
-            });
-            currentButton = button;
-        }
-
-        var currListName = '<?php echo $session_listname ?>';
-
-        listOfButtons = document.getElementsByTagName("BUTTON");
-
-        for (x = 0; x < listOfButtons.length; x++) {
-            if (listOfButtons[x].innerHTML === currListName) {
-                listOfButtons[x].click();
             }
-        }
-    </script>
 
+        });
+    </script>
     <?php
     include "components/footer.php";
     ?>

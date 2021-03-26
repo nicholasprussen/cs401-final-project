@@ -1,14 +1,8 @@
 <html>
 
 <?php
+//start session
 session_start();
-
-// if (isset($_SESSION['authenticated'])) {
-//     if($_SESSION['authenticated']){
-//       header('Location: home.php');
-//         exit;  
-//     }
-// }
 ?>
 
 <head>
@@ -41,13 +35,13 @@ session_start();
                 </div>
                 <div class="content-1-button w-100">
                     <?php
+                        //change button based on login status
                         $changeButton = False;
                         if (isset($_SESSION['authenticated'])) {
                             if($_SESSION['authenticated']){
                                 $changeButton = True;
                             }
                         }
-
                         if($changeButton){
                             echo '<a href="home.php"><button type="button" class="btn text-white secondary-color-background btn-lg">Go Home</button></a>';
                         } else {

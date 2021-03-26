@@ -10,6 +10,7 @@
     ?>
     <link rel="stylesheet" href="css/calendar.css">
     <link rel="stylesheet" href="css/sidebarnav.css">
+    <script src="js/sidebar-style.js"></script>
     <title>Calendar</title>
 </head>
 
@@ -36,6 +37,7 @@
             <div class="container-fluid p-0 calendar-wrapper">
                 <?php
 
+                    //print div for each of the next 30 calendar days
                     for($x = 0; $x < 30;$x++){
                         echo "<div class='calendar-day'><h3>" . date('l, F jS', strtotime('+' . $x . ' days')) . "</h3><div class='calendar-day-content'><p>No Events To Show</p></div></div>";
                     }
@@ -49,17 +51,14 @@
     <!-- /#wrapper -->
 
     <!-- Menu Toggle Script -->
+    <?php
+    include "components/menu_toggle.php";
+    ?>
+
     <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
+        $(function() {
+            changeStyle("#sidebar-calendar");
         });
-
-        currentPage = "sidebar-calendar";
-
-        document.getElementById(currentPage).classList.remove("secondary-color-background");
-
-        document.getElementById(currentPage).style.backgroundColor = "#3AAFA9";
     </script>
 
     <?php
