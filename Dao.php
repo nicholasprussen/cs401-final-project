@@ -4,14 +4,14 @@ require_once 'KLogger.php';
 
 class Dao {
 
-    //private $host = "us-cdbr-east-03.cleardb.com";
-    //private $db = "heroku_31de4dc6b0b0f21";
-    //private $user = "b9fdc62d5daa4c";
-    //private $password = "de2d254a";
-    private $host = "localhost";
-    private $db = "mygiftlists";
-    private $user = "root";
-    private $password = "";
+    private $host = "us-cdbr-east-03.cleardb.com";
+    private $db = "heroku_31de4dc6b0b0f21";
+    private $user = "b9fdc62d5daa4c";
+    private $password = "de2d254a";
+    // private $host = "localhost";
+    // private $db = "mygiftlists";
+    // private $user = "root";
+    // private $password = "";
 
     protected $logger;
 
