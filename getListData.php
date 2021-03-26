@@ -3,12 +3,6 @@
 //start session
 session_start();
 
-if (basename($_SERVER['PHP_SELF']) == 'getListData.php') {
-    header('Location: index.php');
-    exit();
-}
-
-
 //setup logger
 // require_once 'KLogger.php';
 // $logger = new KLogger( "listdata.txt", KLogger::DEBUG);
