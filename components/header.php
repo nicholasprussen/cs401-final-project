@@ -12,7 +12,7 @@
 
             <div>
                 <?php
-                if (isset($_SESSION['authenticated'])) {
+                if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) {
                     echo '<a id="sign-in-button" class="navbar-brand d-flex justify-content-around align-items-center" href="signout.php">
                                 <button type="button" class="btn text-white secondary-color-background">Sign-Out</button>
                             </a>';

@@ -3,12 +3,12 @@
 <?php
 session_start();
 
-if (isset($_SESSION['authenticated'])) {
-    if($_SESSION['authenticated']){
-      header('Location: home.php');
-        exit;  
-    }
-}
+// if (isset($_SESSION['authenticated'])) {
+//     if($_SESSION['authenticated']){
+//       header('Location: home.php');
+//         exit;  
+//     }
+// }
 ?>
 
 <head>
@@ -40,20 +40,23 @@ if (isset($_SESSION['authenticated'])) {
                     </ul>
                 </div>
                 <div class="content-1-button w-100">
-                    <a href="signin.php">
-                        <button type="button" class="btn text-white secondary-color-background btn-lg">Create Your First List</button>
-                    </a>
+                    <?php
+                        $changeButton = False;
+                        if (isset($_SESSION['authenticated'])) {
+                            if($_SESSION['authenticated']){
+                                $changeButton = True;
+                            }
+                        }
+
+                        if($changeButton){
+                            echo '<a href="home.php"><button type="button" class="btn text-white secondary-color-background btn-lg">Go Home</button></a>';
+                        } else {
+                            echo '<a href="signin.php"><button type="button" class="btn text-white secondary-color-background btn-lg">Create Your First List</button></a>';
+                        }
+                    ?>
                 </div>
             </div>
         </div>
-        <!--
-        <div class="index-main-content-2">
-
-        </div>
-        <div class="index-main-content-3">
-
-        </div>
-        !-->
     </div>
 
     <?php
