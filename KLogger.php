@@ -1,10 +1,5 @@
 <?php
 
-if (basename($_SERVER['PHP_SELF']) == 'KLogger.php') {
-    header('Location: index.php');
-    exit();
-}
-
 	/* Finally, A light, permissions-checking logging class.
 	 *
 	 * Author	: Kenneth Katzgrau < katzgrau@gmail.com >

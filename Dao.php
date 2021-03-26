@@ -1,10 +1,5 @@
 <?php
 
-if (basename($_SERVER['PHP_SELF']) == 'Dao.php') {
-    header('Location: index.php');
-    exit();
-}
-
 require_once 'KLogger.php';
 
 class Dao
