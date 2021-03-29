@@ -23,13 +23,17 @@ $dao = new Dao();
 $listData = $dao->getListData($userid, $listname);
 
 //Create initial html with new list item button
-$retHTML = '<li class="create-list-item"><button type="button" class="h-100 w-100 list-button" data-toggle="modal" data-target="#itemModal">Create New List Item (+)</button></li>';
+$retHTML = '<li class="create-list-item"><button type="button" id="create-new-item-button" class="h-100 w-100 list-button" data-toggle="modal" data-target="#itemModal">Create New List Item (+)</button></li>';
 
 //iterate through list and create li's
 foreach($listData as $key => $value) {
     $name = $value['name'];
     $link = $value['link'];
     $price = $value['price'];
+
+    $name = htmlspecialchars($name, ENT_QUOTES);
+    $link = htmlspecialchars($link, ENT_QUOTES);
+    $price = htmlspecialchars($price, ENT_QUOTES);
 
     $retHTML = $retHTML . '<li class="current-list-item"><div class="item-name">' . $name . '</div><div class="item-link">' . $link . '</div><div class="item-price">' . $price . '</div></li>';
 }

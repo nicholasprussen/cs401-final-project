@@ -1,9 +1,9 @@
 .friends-content {
     height: calc(100vh - 190px);
-    background-color: white;
+    background-color: #3AAFA9;
 }
 
-.friends-content h1 {
+.friends-content h3 {
     padding-top: 100px;
     text-align: center;
 }

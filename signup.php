@@ -46,7 +46,7 @@ if (isset($_SESSION['errors'])) {
                         <div class="row">
                             <div class="col">
                                 <label for="firstname" class="form-label">First Name *</label>
-                                <input id="firstname" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['firstname'] ?>" name="firstname" type="text" class="form-control" placeholder="Jack" aria-label="First name">
+                                <input id="firstname" value="<?php if (isset($_SESSION['form'])) echo htmlspecialchars($_SESSION['form']['firstname'] , ENT_QUOTES)  ?>" name="firstname" type="text" class="form-control" placeholder="Jack" aria-label="First name">
                                 <?php
                                 if (isset($errors)) {
                                     if (isset($errors['firstname'])) {
@@ -57,7 +57,7 @@ if (isset($_SESSION['errors'])) {
                             </div>
                             <div class="col">
                                 <label for="lastname" class="form-label">Last Name *</label>
-                                <input id="lastname" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['lastname'] ?>" name="lastname" type="text" class="form-control" placeholder="Sparrow" aria-label="Last name">
+                                <input id="lastname" value="<?php if (isset($_SESSION['form'])) echo htmlspecialchars($_SESSION['form']['lastname'] , ENT_QUOTES)  ?>" name="lastname" type="text" class="form-control" placeholder="Sparrow" aria-label="Last name">
                                 <?php
                                 if (isset($errors)) {
                                     if (isset($errors['lastname'])) {
@@ -70,7 +70,7 @@ if (isset($_SESSION['errors'])) {
                     </div>
                     <div class="form-group">
                         <label for="email" class="form-label">Email *</label>
-                        <input type="text" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['email'] ?>" name="email" id="email" class="form-control" placeholder="captainoftheblackpearl@aol.com" value="" />
+                        <input type="text" value="<?php if (isset($_SESSION['form'])) echo htmlspecialchars($_SESSION['form']['email'] , ENT_QUOTES)  ?>" name="email" id="email" class="form-control" placeholder="captainoftheblackpearl@aol.com" value="" />
                         <?php
                         if (isset($errors)) {
                             if (isset($errors['email'])) {
@@ -83,7 +83,7 @@ if (isset($_SESSION['errors'])) {
                         <div class="row">
                             <div class="col">
                                 <label for="password" class="form-label">Password *</label>
-                                <input id="password" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['password'] ?>" name="password" type="password" class="form-control" placeholder="" aria-label="Password">
+                                <input id="password" value="<?php if (isset($_SESSION['form'])) echo htmlspecialchars($_SESSION['form']['password'] , ENT_QUOTES)  ?>" name="password" type="password" class="form-control" placeholder="" aria-label="Password">
                                 <?php
                                 if (isset($errors)) {
                                     if (isset($errors['password'])) {
@@ -94,7 +94,7 @@ if (isset($_SESSION['errors'])) {
                             </div>
                             <div class="col">
                                 <label for="passwordConfirm" class="form-label">Confirm Password *</label>
-                                <input id="passwordConfirm" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['passwordConfirm'] ?>" name="passwordConfirm" type="password" class="form-control" placeholder="" aria-label="Confirm Password">
+                                <input id="passwordConfirm" value="<?php if (isset($_SESSION['form'])) echo htmlspecialchars($_SESSION['form']['passwordConfirm'] , ENT_QUOTES)  ?>" name="passwordConfirm" type="password" class="form-control" placeholder="" aria-label="Confirm Password">
                                 <?php
                                 if (isset($errors)) {
                                     if (isset($errors['passwordConfirm'])) {
@@ -110,7 +110,7 @@ if (isset($_SESSION['errors'])) {
                         <div class="col-12">
 
                             <label for="address1" class="form-label">Address 1</label>
-                            <input type="text" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['address1'] ?>" class="form-control" id="address1" name="address1" placeholder="420 Tortuga Ln">
+                            <input type="text" value="<?php if (isset($_SESSION['form'])) echo htmlspecialchars($_SESSION['form']['address1'] , ENT_QUOTES)  ?>" class="form-control" id="address1" name="address1" placeholder="420 Tortuga Ln">
                             <?php
                             if (isset($errors)) {
                                 if (isset($errors['address']['address1'])) {
@@ -121,7 +121,7 @@ if (isset($_SESSION['errors'])) {
                         </div>
                         <div class="col-12">
                             <label for="address2" class="form-label">Address 2</label>
-                            <input type="text" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['address2'] ?>" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor">
+                            <input type="text" value="<?php if (isset($_SESSION['form'])) echo htmlspecialchars($_SESSION['form']['address2'] , ENT_QUOTES)  ?>" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor">
                             <?php
                             if (isset($errors)) {
                                 if (isset($errors['address']['address2'])) {
@@ -132,7 +132,7 @@ if (isset($_SESSION['errors'])) {
                         </div>
                         <div class="col-md-2">
                             <label for="zip" class="form-label">Zipcode</label>
-                            <input type="text" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['zip'] ?>" class="form-control" id="zip" name="zip">
+                            <input type="text" value="<?php if (isset($_SESSION['form'])) echo htmlspecialchars($_SESSION['form']['zip'] , ENT_QUOTES)  ?>" class="form-control" id="zip" name="zip">
                             <?php
                             if (isset($errors)) {
                                 if (isset($errors['address']['zipcode'])) {
@@ -143,7 +143,7 @@ if (isset($_SESSION['errors'])) {
                         </div>
                         <div class="col-md-6">
                             <label for="city" class="form-label">City</label>
-                            <input type="text" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['city'] ?>" class="form-control" id="city" name="city">
+                            <input type="text" value="<?php if (isset($_SESSION['form'])) echo htmlspecialchars($_SESSION['form']['city'] , ENT_QUOTES)  ?>" class="form-control" id="city" name="city">
                             <?php
                             if (isset($errors)) {
                                 if (isset($errors['address']['city'])) {
@@ -154,7 +154,7 @@ if (isset($_SESSION['errors'])) {
                         </div>
                         <div class="col-md-4">
                             <label for="state" class="form-label">State</label>
-                            <input type="text" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['state'] ?>" id="state" name="state" class="form-control">
+                            <input type="text" value="<?php if (isset($_SESSION['form'])) echo htmlspecialchars($_SESSION['form']['state'] , ENT_QUOTES)  ?>" id="state" name="state" class="form-control">
                             <?php
                             if (isset($errors)) {
                                 if (isset($errors['address']['state'])) {

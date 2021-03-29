@@ -21,7 +21,7 @@
     include "components/header.php";
     ?>
 
-    <div class="d-flex container p-0" id="wrapper">
+    <div class="d-flex container-lg p-0" id="wrapper">
 
         <?php
             include "components/sidenavbar.php";
@@ -34,7 +34,7 @@
                 include "components/sidenavbartoggler.php";
             ?>
 
-            <div class="container-fluid">
+            <div class="container-fluid settings-wrapper">
                 Hello
             </div>
         </div>

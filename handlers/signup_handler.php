@@ -49,8 +49,12 @@ function isEmpty($string)
 //validate names
 if (isEmpty($firstname))
     $errors['firstname'] = "First name cannot be blank";
+if (!preg_match("/^([a-zA-Z' ]+)$/", $firstname))
+    $errors['firstname'] = "Invalid first name";
 if (isEmpty($lastname))
     $errors['lastname'] = "Last name cannot be blank";
+if (!preg_match("/^([a-zA-Z' ]+)$/", $lastname))
+    $errors['lastname'] = "Invalid last name";
 
 //validate email address
 if (!isEmpty($email)) {

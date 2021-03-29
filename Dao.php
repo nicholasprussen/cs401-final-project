@@ -18,7 +18,7 @@ class Dao
 
     public function __construct()
     {
-        $this->logger = new KLogger("log.txt", KLogger::ERROR);
+        $this->logger = new KLogger("log.txt", KLogger::DEBUG);
     }
 
     /**
@@ -140,6 +140,10 @@ class Dao
                 "email" => $row['email']
             ];
 
+            if($row['address'] != ""){
+                $retArray['address'] = $row['address'];
+            }
+
             //return array
             return $retArray;
         } catch (Exception $e) {
@@ -162,6 +166,38 @@ class Dao
         try {
             //prepare statement
             $q = $connection->prepare("select listname from userlists where userid = :userid");
+            
+            //bind params
+            $q->bindParam(":userid", $userid);
+
+            //execute
+            $q->execute();
+
+            //grab rows
+            $rows = $q->fetchAll(PDO::FETCH_COLUMN);
+
+            //return array
+            return $rows;
+        } catch (Exception $e) {
+            echo print_r($e, 1);
+            exit;
+        }
+    }
+
+    /**
+     * Get first 5 user lists from db
+     * 
+     * @var int user id
+     * 
+     * @return array array of user list names
+     */
+    public function getFiveUserLists($userid)
+    {
+        //make connection
+        $connection = $this->getConnection();
+        try {
+            //prepare statement
+            $q = $connection->prepare("select listname from userlists where userid = :userid limit 5");
             
             //bind params
             $q->bindParam(":userid", $userid);

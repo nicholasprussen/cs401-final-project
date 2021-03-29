@@ -2,43 +2,72 @@
 
 session_start();
 
+#logger
 require_once '../KLogger.php';
+$logger = new KLogger( "createlist.txt", KLogger::ERROR);
 
-$logger = new KLogger( "createlist.txt", KLogger::DEBUG);
-
-$logger->LogDebug(print_r($_POST, 1));
-
-$userid = $_SESSION['userIdentification'];
-
-$listname = $_POST['newlistname'];
-$public = $_POST['public'];
-$isPublic;
-
-if ($public == 'on') {
-    $isPublic = 1;
-} else {
-    $isPublic = 0;
-}
-
-
+//get dao
 require_once '../Dao.php';
 $dao = new Dao();
 
+//isEmpty func
+function isEmpty($string)
+{
+    if ($string === "") {
+        return True;
+    } else {
+        return False;
+    }
+}
 
-//$dao->createUserList($userid, $listname, $isPublic);
+#grab user id
+$userid = $_SESSION['userIdentification'];
 
-if(!($dao->userListExists($userid, $listname))) {
+#error array
+$errors = array();
+
+#grab form inputs
+$listname = $_POST['newlistname'];
+$public = $_POST['public'];
+
+if(isEmpty($listname)){
+    $errors['listname'] = "List name cannot be empty";
+} else {
+    if($dao->userListExists($userid, $listname)){
+        $errors['listname'] = "You already have a list with this name";
+    }
+}
+
+#boolean for public lists
+$isPublic = 0;
+
+#set whether public
+if ($public == 'on') {
+    $isPublic = 1;
+}
+
+#create list
+if(!isset($errors['listname'])){
     $dao->createUserList($userid, $listname, $isPublic);
 }
 
-
-
-if ($_SESSION['authenticated']) {
+#check if errors and redirect
+if (isset($errors['listname'])) {
+    $_SESSION['errors'] = $errors;
+    if(isset($_SESSION['form'])){
+        unset($_SESSION['form']);
+    }
+    $_SESSION['form'] = $_POST;
+    if($isPublic){
+        $_SESSION['form']['public'] = "on";
+    }
     header('Location: ../mylists.php');
     exit;
-} else {
-    header('Location: ../signin.php');
-    exit;
 }
+
+#final redirect if successful
+$_SESSION['currentListName'] = $listname;
+header('Location: ../mylists.php');
+exit;
 
 ?>

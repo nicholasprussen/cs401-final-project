@@ -21,7 +21,7 @@
     include "components/header.php";
     ?>
 
-    <div class="d-flex container p-0" id="wrapper">
+    <div class="d-flex container-lg p-0" id="wrapper">
 
         <?php
             include "components/sidenavbar.php";
@@ -35,7 +35,7 @@
             ?>
 
             <div class="container-fluid friends-content">
-                <h1>You don't get to have any friends</h1>
+                <h3>Friends are not supported at this time</h3>
             </div>
         </div>
         <!-- /#page-content-wrapper -->

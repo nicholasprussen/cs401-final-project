@@ -43,7 +43,7 @@ if (isset($_SESSION['errors'])) {
                 <h3>Login</h3>
                 <form method="POST" action="handlers/signin_handler.php">
                     <div class="form-group">
-                        <input type="text" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['email'] ?>" name="email" id="accEmail" class="form-control" placeholder="Your Email *" value="" />
+                        <input type="text" value="<?php if (isset($_SESSION['form'])) echo htmlspecialchars($_SESSION['form']['email'] , ENT_QUOTES) ?>" name="email" id="accEmail" class="form-control" placeholder="Your Email *" value="" />
                     </div>
                     <?php
                     if (isset($errors)) {
@@ -53,7 +53,7 @@ if (isset($_SESSION['errors'])) {
                     }
                     ?>
                     <div class="form-group">
-                        <input type="password" value="<?php if (isset($_SESSION['form'])) echo $_SESSION['form']['password'] ?>" class="form-control" name="password" id="accPassword" placeholder="Your Password *" value="" />
+                        <input type="password" value="<?php if (isset($_SESSION['form'])) echo htmlspecialchars($_SESSION['form']['password'] , ENT_QUOTES)  ?>" class="form-control" name="password" id="accPassword" placeholder="Your Password *" value="" />
                     </div>
                     <?php
                     if (isset($errors)) {
