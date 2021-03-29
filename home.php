@@ -122,7 +122,7 @@ include 'components/checkauthenticated.php';
 
                                 ?>
                                 <div class="card-body d-flex">
-                                    <a href="calendar.php" class="btn btn-primary mt-auto">Go to Calendar</a>
+                                    <a href="myprofile.php" class="btn btn-primary mt-auto">Go to My Profile</a>
                                 </div>
                             </div>
                         </div>
