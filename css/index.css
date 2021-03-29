@@ -1,12 +1,5 @@
-.index-main-content {
-    height: calc(100% - 122px);
-    width: 100%;
-}
-
 .index-main-content-1 {
-    /* height: calc(100vh - 122px); */
-    /*height: calc(100% - 122px);*/
-    height: 100%;
+    height: calc(100vh - 122px);
     width: 100%;
     background-image: url("../img/backgrounds/NarrowsBridgeBlurred.jpg");
     background-size: cover;
