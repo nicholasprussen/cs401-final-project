@@ -6,7 +6,8 @@
 }
 
 .page-content-set-height {
-    height: calc(100vh - 190px);
+    /* height: calc(100vh - 190px); */
+    height: calc(100% - 68px);
 }
 
 .lists-container {
