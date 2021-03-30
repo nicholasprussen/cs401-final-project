@@ -10,8 +10,8 @@
                 <div class="copyright-menu">
                     <ul>
                         <li><a href="home.php">Home</a></li>
-                        <li><a href="terms.php">Terms</a></li>
-                        <li><a href="privacypolicy.php">Privacy Policy</a></li>
+                        <li><a href="catchall.php">Terms</a></li>
+                        <li><a href="catchall.php">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>

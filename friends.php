@@ -35,7 +35,7 @@
             ?>
 
             <div class="container-fluid friends-content">
-                <h3>Friends are not supported at this time</h3>
+                <h3>Friends are not supported at this time. Functionality is still being tested and not functional.</h3>
             </div>
         </div>
         <!-- /#page-content-wrapper -->

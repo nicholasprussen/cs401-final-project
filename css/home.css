@@ -40,3 +40,7 @@
 .card .list-group li {
   background-color: #DEF2F1;
 }
+
+.extra-padding-top {
+  padding-top: 15px;
+}

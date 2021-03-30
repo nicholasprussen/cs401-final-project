@@ -35,13 +35,15 @@
             ?>
 
             <div class="container-fluid myprofile-wrapper">
+                <h1 class="p-1">Current Status:</h1>
+                <p class="p-1">This page will be used for displaying a users data that was provided and give the ability to alter data. This functionality has not been added yet, but will be implemented soon. For now here's all your personal info :)</p>
                 <?php
                     require_once 'Dao.php';
                     $dao = new Dao();
 
                     $userInfo = $dao->getUserInfo($_SESSION['userIdentification']);
 
-                    echo print_r($userInfo, 1);
+                    echo '<pre>' . print_r($userInfo, 1) . "</pre>";
                 ?>
             </div>
         </div>

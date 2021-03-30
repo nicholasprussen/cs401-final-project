@@ -111,12 +111,26 @@ include 'components/checkauthenticated.php';
                                     <h5 class="card-title">My Profile</h5>
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="bold">Name:</h5>
-                                    <?php echo '<p class="card-text">' . $userInfo['firstname'] . ' ' . $userInfo['lastname'] . '</p>' ?>
-                                    <h5 class="bold">Email:</h5>
-                                    <?php echo '<p class="card-text">' . $userInfo['email'] . '</p>' ?>
-                                    <h5 class="bold">Address:</h5>
-                                    <?php if(isset($userInfo['address'])){ echo '<p class="card-text">' . $userInfo['address'] . '</p>'; } else {echo '<p class="card-text">N/A</p>';} ?>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="bold">Name:</h5>
+                                            <?php echo '<p class="card-text">' . $userInfo['firstname'] . ' ' . $userInfo['lastname'] . '</p>' ?>
+                                        </div>
+                                        <div class="col">
+                                            <h5 class="bold">Email:</h5>
+                                            <?php echo '<p class="card-text">' . $userInfo['email'] . '</p>' ?>
+                                        </div>
+                                    </div>
+                                    <div class="row extra-padding-top">
+                                        <div class="col">
+                                            <h5 class="bold">Address:</h5>
+                                            <?php if (isset($userInfo['address'])) {
+                                                echo '<p class="card-text">' . $userInfo['address'] . '</p>';
+                                            } else {
+                                                echo '<p class="card-text">N/A</p>';
+                                            } ?>
+                                        </div>
+                                    </div>
                                 </div>
                                 <?php
 

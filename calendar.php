@@ -35,6 +35,8 @@
             ?>
 
             <div class="container-fluid p-0 calendar-wrapper">
+                <h1 class="p-1">Current Status:</h1>
+                <p class="p-1">This page uses some php to display the next 30 days, but the ability to add events is not yet supported.</p>
                 <?php
 
                     //print div for each of the next 30 calendar days

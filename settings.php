@@ -35,7 +35,8 @@
             ?>
 
             <div class="container-fluid settings-wrapper">
-                Hello
+                <h1 class="p-1">Current Status:</h1>
+                <p class="p-1">This page will be used to allow users to save settings about their pages, but currently there aren't any settings for them to change so nothing has been built.</p>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
