@@ -32,15 +32,19 @@ if(!isEmpty($email)) {
     $errors['email'] = "Email cannot be empty";
 }
 
+//salt and hash password
+$salt = "randomjunk";
+$newpass = hash('sha256', $password.$salt);
+
 //validate password
 if(!isEmpty($password)){
-    //make sure password follows restrictions
-    if(strlen($password) > 1 && strlen($password) <= 64){
+    if(strlen($password) < 8){
+        $errors['password'] = "Password cannot be shorter than 8 characters";
+    } else{
+        //make sure password follows restrictions
         require_once '../Dao.php';
         $dao = new Dao();
-        $_SESSION['authenticated'] = $dao->userExists($email, $password);
-    } else {
-        $errors['password'] = "Password is a maximum of 64 characters";
+        $_SESSION['authenticated'] = $dao->userExists($email, $newpass);
     }
 } else {
     $errors['password'] = "Password cannot be empty";
@@ -48,9 +52,8 @@ if(!isEmpty($password)){
 
 //check authenticated
 if ($_SESSION['authenticated']) {
-
     //grab user id
-    $_SESSION['userIdentification'] = $dao->userIdentification($email, $password);
+    $_SESSION['userIdentification'] = $dao->userIdentification($email, $newpass);
     if(isset($_SESSION['form'])){
         unset($_SESSION['form']);
     }
@@ -72,5 +75,3 @@ if ($_SESSION['authenticated']) {
     header('Location: ../signin.php');
     exit;
 }
-
-?>

@@ -73,13 +73,10 @@ if (!isEmpty($email)) {
 
 //validate password
 if (!isEmpty($password)) {
-    if(strlen($password) > 64){
-        $errors['password'] = "Password must be less than 64 characters";
-    }
     if(strlen($password) < 8){
         $errors['password'] = "Password must be 8 characters or more";
     }
-    if (strlen($password) > 8 && strlen($password) <= 64) {
+    if (strlen($password) > 8) {
         if ($password === $passwordConfirm) {
             $isPasswordValid = True;
         } else {
@@ -169,13 +166,17 @@ if (!isEmpty($address1) || !isEmpty($address2) || !isEmpty($zipcode) || !isEmpty
     }
 }
 
+//salt and hash password
+$salt = "randomjunk";
+$newpass = hash('sha256', $password.$salt);
+
 //see if all checks are passed
 if ($isEmailValid && $isPasswordValid && ($addressNotStarted || $isAddressValid)) {
 
     //create user
-    $dao->createUser($firstname, $lastname, $email, $password, $completedAddress);
+    $dao->createUser($firstname, $lastname, $email, $newpass, $completedAddress);
     //double check authentication
-    $_SESSION['authenticated'] = $dao->userExists($email, $password);
+    $_SESSION['authenticated'] = $dao->userExists($email, $newpass);
 
 }
 
@@ -184,7 +185,7 @@ if ($isEmailValid && $isPasswordValid && ($addressNotStarted || $isAddressValid)
 if ($_SESSION['authenticated']) {
 
     //grab user id
-    $_SESSION['userIdentification'] = $dao->userIdentification($email, $password);
+    $_SESSION['userIdentification'] = $dao->userIdentification($email, $newpass);
     //unset form
     if (isset($_SESSION['form'])) {
         unset($_SESSION['form']);
